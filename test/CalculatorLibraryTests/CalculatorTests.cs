@@ -1,28 +1,52 @@
-﻿using CalculatorLibrary;
-using Xunit;
+﻿using Xunit;
 
-namespace CalculatorLibraryTests;
+namespace CalculatorLibrary.Tests.Unit;
 
 public class CalculatorTests
 {
 
-    private Calculator _calculator = new();
+    [Fact]
+    public void Add_ShouldAddTwoNumbers_WhenToNumbersAreIntegers()
+    {
+        //Arrange
+        Calculator calculator = new(); 
+
+        //Act
+        int result = calculator.Add(5, 4);
+
+        //Assert
+        Assert.Equal(9, result);
+    }
+
 
     [Fact]
-    public void TestAdd() 
-        => Assert.Equal(9, _calculator.Add(5, 4));
+    public void Subtract_ShouldSubtractTwoNumbers_WhenToNumbersAreIntegers()
+    {
+        Calculator calculator = new();
+
+        int result = calculator.Subtract(5, 4);
+
+        Assert.Equal(1, result);
+    }
+
 
     [Fact]
-    public void TestSubtract()
-        => Assert.Equal(1, _calculator.Subtract(5, 4));
-    
+    public void Multiply_ShouldMultiplyTwoNumbers_WhenToNumbersAreIntegers()
+    {
+        Calculator calculator = new();
+
+        int result = calculator.Multiply(5, 4);
+
+        Assert.Equal(20, result);
+    }
+
 
     [Fact]
-    public void TestMultiply()
-        => Assert.Equal(20, _calculator.Multiply(5, 4));
-    
-    [Fact]
-    public void TestDivide()
-        => Assert.Equal(2, _calculator.Divide(10, 5));
+    public void Divide_ShouldDivideTwoNumbers_WhenToNumbersAreIntegers()
+    {
+        Calculator calculator = new();
+        int result = calculator.Divide(10, 5);
+        Assert.Equal(2, result);
+    }
 
 }
