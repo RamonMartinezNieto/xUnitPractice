@@ -11,6 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorLibrary", "src\Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorLibrary.Tests.Unit", "test\CalculatorLibraryTests\CalculatorLibrary.Tests.Unit.csproj", "{0CE4056A-4AC3-46B4-9652-4C5CFDF721C0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{2A20C01E-A6F3-45BD-AE53-EC3F7265F37D}"
+	ProjectSection(SolutionItems) = preProject
+		Exercise\Exercise.md = Exercise\Exercise.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
