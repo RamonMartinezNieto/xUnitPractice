@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentAssertions;
+using System;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -26,11 +27,13 @@ public class CalculatorTests : IDisposable
         int result = calculator.Add(5, 4);
 
         //Assert
-        Assert.Equal(9, result);
+        //Assert.Equal(9, result);
+        result.Should().Be(9);
     }
 
 
-    [Theory(Skip = "Skip a complete Theory")] //This is not commont and maybe is an error to do that
+    //[Theory(Skip = "Skip a complete Theory")] //This is not commont and maybe is an error to do that
+    [Theory]
     [InlineData(0,0,0, Skip = "I can skip a InlineData! :)")]
     [InlineData(5,4,1)]
     [InlineData(5,5,0)]
@@ -39,17 +42,20 @@ public class CalculatorTests : IDisposable
     [InlineData(-10,5,-15)]
     public void Subtract_ShouldSubtractTwoNumbers_WhenToNumbersAreIntegers(
         int numberOne, int numberTwo, int expected)
-        => Assert.Equal(expected, _sut.Subtract(numberOne, numberTwo));
-
+        //=> Assert.Equal(expected, _sut.Subtract(numberOne, numberTwo));
+        => _sut.Subtract(numberOne,numberTwo).Should().Be(expected);
+        
+    
 
     [Fact]
     public void Multiply_ShouldMultiplyTwoNumbers_WhenToNumbersAreIntegers()
-        => Assert.Equal(20, _sut.Multiply(5, 4));
-
+        //=> Assert.Equal(20, _sut.Multiply(5, 4));
+        => _sut.Multiply(5, 4).Should().Be(20);
 
     [Fact(Skip = "Skip this test :)")]
     public void Divide_ShouldDivideTwoNumbers_WhenToNumbersAreIntegers()
-        => Assert.Equal(2, _sut.Divide(10, 5));
+        //=> Assert.Equal(2, _sut.Divide(10, 5));
+        => _sut.Divide(5, 4).Should().Be(2);
 
     //Dispose is the teardown
     public void Dispose()
@@ -109,4 +115,6 @@ public class CalculatorTests : IDisposable
 //xunit uses C# way to write the setup and the teardown (cleanup) using the constructor and the dispose
 
 //If we have an async tests we can implement IAsyncLifetime and implemente InitializeAsync and DisposeAsync 
-//to implement Setup and Teardown, ctor run first than InitializeAsync, it is important to remember. 
+//to implement Setup and Teardown, ctor run first than InitializeAsync, it is important to remember.
+
+//We can use fluent assertions to have more elegant tests
