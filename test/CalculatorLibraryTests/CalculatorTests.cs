@@ -31,9 +31,16 @@ public class CalculatorTests : IDisposable
     }
 
 
-    [Fact]
-    public void Subtract_ShouldSubtractTwoNumbers_WhenToNumbersAreIntegers()
-        => Assert.Equal(1, _sut.Subtract(5, 4));
+    [Theory]
+    [InlineData(0,0,0)]
+    [InlineData(5,4,1)]
+    [InlineData(5,5,0)]
+    [InlineData(5,10,-5)]
+    [InlineData(-5,-5,0)]
+    [InlineData(-10,5,-15)]
+    public void Subtract_ShouldSubtractTwoNumbers_WhenToNumbersAreIntegers(
+        int numberOne, int numberTwo, int expected)
+        => Assert.Equal(expected, _sut.Subtract(numberOne, numberTwo));
 
 
     [Fact]
