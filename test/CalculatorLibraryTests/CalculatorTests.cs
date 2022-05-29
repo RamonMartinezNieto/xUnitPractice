@@ -31,8 +31,8 @@ public class CalculatorTests : IDisposable
     }
 
 
-    [Theory]
-    [InlineData(0,0,0)]
+    [Theory(Skip = "Skip a complete Theory")]
+    [InlineData(0,0,0, Skip = "I can skip a InlineData! :)")]
     [InlineData(5,4,1)]
     [InlineData(5,5,0)]
     [InlineData(5,10,-5)]
@@ -48,7 +48,7 @@ public class CalculatorTests : IDisposable
         => Assert.Equal(20, _sut.Multiply(5, 4));
 
 
-    [Fact]
+    [Fact(Skip = "Skip this test :)")]
     public void Divide_ShouldDivideTwoNumbers_WhenToNumbersAreIntegers()
         => Assert.Equal(2, _sut.Divide(10, 5));
 
