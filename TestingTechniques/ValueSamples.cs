@@ -36,6 +36,9 @@ public class ValueSamples
             DateOfBirthday = new(1992, 8, 17)
         },
     };
+
+    public IEnumerable<int> Numbers = new[] { 1, 5, 10, 15 };
+
 }
 
 public class User 

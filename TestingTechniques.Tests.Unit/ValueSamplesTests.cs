@@ -78,5 +78,14 @@ public class ValueSamplesTests
     }
 
 
+    [Fact]
+    public void Example_EnumerableInt()
+    {
+        var numbers = _sut.Numbers.As<int[]>();
+
+        numbers.Should().HaveCount(4);
+        numbers.Should().Contain(5);
+        numbers.Should().NotHaveCount(10);
+    }
 
 }
