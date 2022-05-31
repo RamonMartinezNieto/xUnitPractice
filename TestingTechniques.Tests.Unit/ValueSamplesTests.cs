@@ -57,5 +57,26 @@ public class ValueSamplesTests
         //this runs because is checking all properties in execution time to check each individual property
         result.Should().BeEquivalentTo(expected); 
     }
+        
+    [Fact]
+    public void EnumerableObjectExample()
+    {
+        var expected = new User()
+        {
+            FullName = "Ramon Martinez",
+            Age = 33,
+            DateOfBirthday = new(1988, 10, 27)
+        };
+
+        var users = _sut.Users.As<User[]>();
+
+        //users.Should().Contain(expected); //fail because is checking the reference
+        users.Should().ContainEquivalentOf(expected); // same as BeEquivalentTo
+        users.Should().HaveCount(3);
+        users.Should().Contain(x => x.FullName.StartsWith("Ramon"));
+        users.Should().HaveCountLessThan(10); 
+    }
+
+
 
 }
