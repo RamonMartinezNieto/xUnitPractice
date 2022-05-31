@@ -88,4 +88,15 @@ public class ValueSamplesTests
         numbers.Should().NotHaveCount(10);
     }
 
+    [Fact]
+    public void Example_EventRaiseAssertionExample() 
+    {
+        //Monitor is a method in FluentAssertions IMonitor, extension method of T that has event
+        var monitorSubject = _sut.Monitor();
+
+        _sut.RaiseExampleEvent();
+
+        monitorSubject.Should().NotBeNull();
+        monitorSubject.Should().Raise("ExampleEvent");
+    }
 }
