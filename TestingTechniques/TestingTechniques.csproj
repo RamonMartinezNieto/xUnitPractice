@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 	  <TargetFramework>net6.0</TargetFramework>
@@ -6,4 +6,8 @@
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<!-- More correct aproach to expose internal members to unit test-->
+	<ItemGroup>
+		<InternalsVisibleTo Include="TestingTechniques.Tests.Unit"/>
+	</ItemGroup>
 </Project>

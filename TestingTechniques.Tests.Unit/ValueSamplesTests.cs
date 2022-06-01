@@ -99,4 +99,12 @@ public class ValueSamplesTests
         monitorSubject.Should().NotBeNull();
         monitorSubject.Should().Raise("ExampleEvent");
     }
+
+    [Fact]
+    public void TestingInterMember() 
+    {
+        var number = _sut.InternalSecretNumber;
+
+        number.Should().Be(42);
+    }
 }
