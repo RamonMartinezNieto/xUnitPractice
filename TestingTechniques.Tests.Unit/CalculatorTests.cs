@@ -12,5 +12,13 @@ public class CalculatorTests
         result.Should()
             .Throw<DivideByZeroException>()
             .WithMessage("Attempted to divide by zero.");
+    }    
+    
+    [Fact]
+    public void Divide_ShouldDivideTwoIntegers_WhenBothAreIntegers_AndDivisorIsNot0_AndResultIsInteger() 
+    {
+        int result = _sut.Divide(10, 5);
+
+        result.Should().Be(2);
     }
 }
