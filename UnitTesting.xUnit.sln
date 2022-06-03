@@ -16,9 +16,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución",
 		Exercise\Exercise.md = Exercise\Exercise.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingTechniques", "TestingTechniques\TestingTechniques.csproj", "{E201028D-649E-44AE-99AA-FA09A984823F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingTechniques", "TestingTechniques\TestingTechniques.csproj", "{E201028D-649E-44AE-99AA-FA09A984823F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingTechniques.Tests.Unit", "TestingTechniques.Tests.Unit\TestingTechniques.Tests.Unit.csproj", "{20436D46-C5E3-4454-95EE-06795880D97E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingTechniques.Tests.Unit", "TestingTechniques.Tests.Unit\TestingTechniques.Tests.Unit.csproj", "{20436D46-C5E3-4454-95EE-06795880D97E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestinWithDependencies.Api", "TestinWithDependencies.Api\TestinWithDependencies.Api.csproj", "{E83C5745-357C-466D-BDDF-7D2A30826F86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingWithDependencies.Tests.Unit", "TestingWithDependencies.Tests.Unit\TestingWithDependencies.Tests.Unit.csproj", "{F9C24247-D35E-454C-9954-7D613A6E2587}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +46,14 @@ Global
 		{20436D46-C5E3-4454-95EE-06795880D97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20436D46-C5E3-4454-95EE-06795880D97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20436D46-C5E3-4454-95EE-06795880D97E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E83C5745-357C-466D-BDDF-7D2A30826F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E83C5745-357C-466D-BDDF-7D2A30826F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E83C5745-357C-466D-BDDF-7D2A30826F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E83C5745-357C-466D-BDDF-7D2A30826F86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9C24247-D35E-454C-9954-7D613A6E2587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9C24247-D35E-454C-9954-7D613A6E2587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9C24247-D35E-454C-9954-7D613A6E2587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9C24247-D35E-454C-9954-7D613A6E2587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +63,8 @@ Global
 		{0CE4056A-4AC3-46B4-9652-4C5CFDF721C0} = {6BCC7D48-833A-4802-95CF-245E992C7954}
 		{E201028D-649E-44AE-99AA-FA09A984823F} = {DC3B8886-A978-49DF-B594-49D0615E13CD}
 		{20436D46-C5E3-4454-95EE-06795880D97E} = {6BCC7D48-833A-4802-95CF-245E992C7954}
+		{E83C5745-357C-466D-BDDF-7D2A30826F86} = {DC3B8886-A978-49DF-B594-49D0615E13CD}
+		{F9C24247-D35E-454C-9954-7D613A6E2587} = {6BCC7D48-833A-4802-95CF-245E992C7954}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF59F593-ACE5-451B-B320-7DA0CF4ED6B8}

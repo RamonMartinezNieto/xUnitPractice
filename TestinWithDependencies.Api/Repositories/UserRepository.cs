@@ -1,0 +1,17 @@
+﻿namespace TestinWithDependencies.Api.Repositories;
+
+public class UserRepository : IUserRepository
+{
+    private readonly SqliteDbConnectionFactory _connectionFactory;
+
+    public UserRepository(SqliteDbConnectionFactory connectionFactory)
+    {
+        _connectionFactory = connectionFactory;
+    }
+
+    public async Task<IEnumerable<User>> GetAllAsync() 
+    {
+        using var connection = await _connectionFactory.CreateDbConnectionAsync();
+        return await connection.QueryAsync<User>("select * from Users");
+    }
+}
