@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{2A20C01E-A6F3-45BD-AE53-EC3F7265F37D}"
 	ProjectSection(SolutionItems) = preProject
 		Exercise\Exercise.md = Exercise\Exercise.md
+		ExerciseRealWorld.md = ExerciseRealWorld.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingTechniques", "TestingTechniques\TestingTechniques.csproj", "{E201028D-649E-44AE-99AA-FA09A984823F}"
@@ -26,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingWithDependencies.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealWorld", "RealWorld\RealWorld.csproj", "{A7CAD97C-9472-4018-B027-1BAAD96F578C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealWorld.Api.Tests.Unit", "RealWorld.Api.Tests.Unit\RealWorld.Api.Tests.Unit.csproj", "{7580EBD9-F1A4-430A-B8D1-61B4DB78E574}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealWorld.Api.Tests.Unit", "RealWorld.Api.Tests.Unit\RealWorld.Api.Tests.Unit.csproj", "{7580EBD9-F1A4-430A-B8D1-61B4DB78E574}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
