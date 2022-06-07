@@ -123,7 +123,7 @@ public class ExercisesUnitTestRealWorld
     [Fact]
     public async Task CreateAsync_ShouldCreateAUser_WhenDetailsAreValid()
     {
-        User user = new User()
+        User user = new ()
         {
             FullName = "Ramon"
         };
@@ -140,7 +140,7 @@ public class ExercisesUnitTestRealWorld
     public async Task CreateAsync_ShouldLogCorrectMessage_WhenCreateUser()
     {
         //arrange
-        User user = new User()
+        User user = new ()
         {
             FullName = "Ramon"
         };
@@ -275,7 +275,7 @@ public class ExercisesUnitTestRealWorld
 
         _loggerAdapter.Received(1).LogError(
             Arg.Any<SqliteException>(),
-            Arg.Is<string?>(x => x.StartsWith("Something went wrong while deleting user with")),
+            Arg.Is<string?>(x => x!.StartsWith("Something went wrong while deleting user with")),
             Arg.Any<Guid>());
 
     }
