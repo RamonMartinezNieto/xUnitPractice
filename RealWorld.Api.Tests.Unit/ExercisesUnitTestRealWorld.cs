@@ -12,6 +12,7 @@ using Xunit;
 using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using NSubstitute.ExceptionExtensions;
+using NSubstitute.ReturnsExtensions;
 
 namespace RealWorld.Api.Tests.Unit;
 
@@ -31,33 +32,28 @@ public class ExercisesUnitTestRealWorld
 
 
     [Fact]
-    public async Task GetByIdAsync_ShouldReturnAUser_WhenUserExist() 
+    public async Task GetByIdAsync_ShouldReturnAUser_WhenUserExists() 
     {
-        var returnUser = new User()
+        var existingUser = new User
         {
+            Id = Guid.NewGuid(),
             FullName = "Ramon"
         };
-
-        //Arrange
-        _userRepository.GetByIdAsync(Arg.Any<Guid>()).Returns(returnUser);
+        //mocking
+        _userRepository.GetByIdAsync(existingUser.Id).Returns(existingUser);
 
         //Action
-        User? result = await _sut.GetByIdAsync(returnUser.Id);
+        User? result = await _sut.GetByIdAsync(existingUser.Id);
 
         //Assert
-        result.Should().BeEquivalentTo<User>(new User() { Id = returnUser.Id, FullName = "Ramon" });
+        result.Should().BeEquivalentTo<User>(existingUser);
     }
 
     [Fact]
     public async Task GetByIdAsync_ShouldReturnNull_WhenUserDoesntExist() 
     {
-        var returnUser = new User()
-        {
-            FullName = "Ramon"
-        };
-
         //Arrange
-        _userRepository.GetByIdAsync(Arg.Is(returnUser.Id)).Returns(returnUser);
+        _userRepository.GetByIdAsync(Arg.Any<Guid>()).ReturnsNull();
 
         //Action
         User? result = await _sut.GetByIdAsync(Guid.NewGuid()); //doesn't exist
@@ -71,6 +67,7 @@ public class ExercisesUnitTestRealWorld
     {
         var returnUser = new User()
         {
+            Id = Guid.NewGuid(),
             FullName = "Ramon"
         };
 
@@ -85,7 +82,7 @@ public class ExercisesUnitTestRealWorld
 
         _loggerAdapter.Received(1).LogInformation(
             Arg.Is<string?>(str => str!.StartsWith("Retrieving user with")), 
-            Arg.Any<Guid>());
+            Arg.Is(returnUser.Id));
 
         _loggerAdapter.Received(1).LogInformation(
             Arg.Is<string?>(str => str!.StartsWith("User with id")),
@@ -96,12 +93,13 @@ public class ExercisesUnitTestRealWorld
     [Fact]
     public async Task GetByIdAsync_ShouldLogCorrectMessage_WhenThrownException()
     {
+        //Arrange
+        Guid userId = Guid.NewGuid();
         var sqlLIteException = new SqliteException("Something wen wrong", 500);
-        _userRepository.GetByIdAsync(Arg.Any<Guid>()).Throws(sqlLIteException);
-
+        _userRepository.GetByIdAsync(userId).Throws(sqlLIteException);
 
         //Action
-        var result = async () => await _sut.GetByIdAsync(Guid.NewGuid());
+        var result = async () => await _sut.GetByIdAsync(userId);
 
         await result
             .Should()
@@ -112,27 +110,23 @@ public class ExercisesUnitTestRealWorld
         _loggerAdapter.Received(2);
         _loggerAdapter.Received(1).LogInformation(
             Arg.Is<string?>(str => str!.StartsWith("Retrieving user with")),
-            Arg.Any<Guid>());
+            Arg.Is<Guid>(userId));
         
         _loggerAdapter.Received(1).LogError(
             Arg.Is<SqliteException>(sqlLIteException),
             Arg.Is<string?>(x => x!.StartsWith("Something went wrong while retrieving user with")),
-            Arg.Any<Guid>());
+            Arg.Is<Guid>(userId));
     }
 
     [Fact]
     public async Task CreateAsync_ShouldCreateAUser_WhenDetailsAreValid()
     {
-        User user = new ()
-        {
-            FullName = "Ramon"
-        };
+        User user = new () { FullName = "Ramon" };
 
         _userRepository.CreateAsync(user).Returns(true);
 
         var result = await _sut.CreateAsync(user);
 
-        //assert
         result.Should().BeTrue();
     }
 
@@ -151,14 +145,12 @@ public class ExercisesUnitTestRealWorld
         //assert
         _loggerAdapter.Received(2);
 
-        _loggerAdapter.Received(1)
-            .LogInformation(
+        _loggerAdapter.Received(1).LogInformation(
             Arg.Is<string?>(str => str!.StartsWith("Creating user with id ")),
-            Arg.Is(user.Id),
+            Arg.Is(user.Id), 
             Arg.Is(user.FullName));
 
-        _loggerAdapter.Received(1)
-            .LogInformation(
+        _loggerAdapter.Received(1).LogInformation(
             Arg.Is<string?>(str => str!.StartsWith("User with id")),
             Arg.Is(user.Id),
             Arg.Any<long>());
@@ -200,17 +192,18 @@ public class ExercisesUnitTestRealWorld
     [Fact]
     public async Task DeleteByIdAsync_ShouldDeleteUser_WhenUserExist()
     {
+        //Arrange
         User user = new(){ FullName = "Ramon" };
-
+        //Mocking
         _userRepository.DeleteByIdAsync(user.Id).Returns(true);
-
+        //Action
         var result = await _sut.DeleteByIdAsync(user.Id);
-
+        //Assert
         result.Should().BeTrue();
     }
 
     [Fact]
-    public async Task DeleteByIdAsync_ShouldNotDeleteUser_WhenUserNoExist()
+    public async Task DeleteByIdAsync_ShouldNotDeleteUser_WhenUserDoesntExist()
     {
         User user = new() { FullName = "Ramon" };
         Guid guidTest = Guid.NewGuid();

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using RealWorld.Contract;
 using RealWorld.Mappers;
 using RealWorld.Model;
 using RealWorld.Services;
@@ -67,7 +68,9 @@ namespace RealWorld.Controllers
 
             var userResponse = user.ToUserResponse();
 
-            return CreatedAtAction(nameof(GetById), new { id = userResponse.Id }, userResponse);
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = userResponse.Id }, userResponse);
         }
 
         [HttpDelete("users/{id:guid}")]

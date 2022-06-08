@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución",
 	ProjectSection(SolutionItems) = preProject
 		Exercise\Exercise.md = Exercise\Exercise.md
 		ExerciseRealWorld.md = ExerciseRealWorld.md
+		ExerciseApi.md = ExerciseApi.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingTechniques", "TestingTechniques\TestingTechniques.csproj", "{E201028D-649E-44AE-99AA-FA09A984823F}"
