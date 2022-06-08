@@ -70,7 +70,8 @@ namespace RealWorld.Controllers
 
             return CreatedAtAction(
                 nameof(GetById),
-                new { id = userResponse.Id }, userResponse);
+                new { id = userResponse.Id }, 
+                userResponse);
         }
 
         [HttpDelete("users/{id:guid}")]

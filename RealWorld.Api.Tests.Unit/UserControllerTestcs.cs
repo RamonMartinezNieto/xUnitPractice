@@ -118,21 +118,41 @@ public class UserControllerTestcs
     }
             
     [Fact]
-    public async Task Create_ShouldReturnCreateAction201_WhenUserIsCreate()
+    public async Task Create_ShouldReturnCreateAction201_WhenCreateUserRequestIsValid ()
     {
         CreateUserRequest requestUser = new() 
         {
             FullName = "Ramon"
         };
-
+        User user = new User()
+        {
+            Id= Guid.NewGuid(),
+            FullName = requestUser.FullName
+        };
         //arrange
-        _userService.CreateAsync(Arg.Any<User>()).Returns(true);
 
+        //Not valid if we wan to validate ID 
+        _userService.CreateAsync(Arg.Is<User>(x => x.FullName == user.FullName)).Returns(true);
+        
+        //the object instantiate within the CreateAsync will be the our user here (overrider user)
+        //_userService.CreateAsync(Arg.Do<User>(x => user = x)).Returns(true);
+        
+        var expectedUserResponse = user.ToUserResponse();
         //act
         var response = (CreatedAtActionResult)await _sut.Create(requestUser);
 
         //assert
         response.StatusCode.Should().Be(201);
+
+
+        //With options to exclude ID because is different 
+        response.Value.As<UserResponse>().Should()
+            .BeEquivalentTo<UserResponse>(expectedUserResponse,
+            options => options.Excluding(x => x.Id));
+
+        //response.Value.As<UserResponse>().Should()
+        //    .BeEquivalentTo(expectedUserResponse);
+        //response.RouteValues!["id"].Should().BeEquivalentTo(user.Id);
     }            
 
     [Fact]
