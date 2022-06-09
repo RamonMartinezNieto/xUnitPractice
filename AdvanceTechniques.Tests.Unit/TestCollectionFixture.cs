@@ -12,8 +12,10 @@
 /// 
 /// This is the first step, see the CollectionFixtureBehaviorTest to 
 /// see more.
+/// 
+/// We can disable parallelization in the collection
 /// </summary>
-[CollectionDefinition("MyCollectionFixture")]
+[CollectionDefinition("MyCollectionFixture", DisableParallelization = true)]
 public class TestCollectionFixture : ICollectionFixture<MyClassFixture>
 {
 }
