@@ -1,9 +1,12 @@
 ﻿using Dapper;
 using RealWorld.Data;
 using RealWorld.Model;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RealWorld.Repositories;
 
+//Mark that this class is excluded from the coverage
+[ExcludeFromCodeCoverage]
 public class UserRepository : IUserRepository
 {
     private readonly ISqliteDbConnectionFactory _connectionFactory;
