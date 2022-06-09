@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -70,9 +72,10 @@ public class CalculatorTests : IDisposable
     ///// ******************************************* /////
     
     [Theory]
-    [InlineData(5, 5, 10)]
-    [InlineData(-5, 5, 0)]
-    [InlineData(-15, (-5), -20)]
+    //[InlineData(5, 5, 10)]
+    //[InlineData(-5, 5, 0)]
+    //[InlineData(-15, (-5), -20)]
+    [MemberData(nameof(AddTestData))]
     public void AddExercise_ShoulAddTwoNumbers_WhenNUmbersAreIntegers(
         int numberOne, int numberTwo, int expected)
         => Assert.Equal(expected, _sut.Add(numberOne, numberTwo));
@@ -102,11 +105,22 @@ public class CalculatorTests : IDisposable
     public void DivideExercise_ShoulDivideTwoNumbers_WhenNUmbersAreIntegers(
         int numberOne, int numberTwo, int expected)
         => Assert.Equal(expected, _sut.Divide(numberOne, numberTwo));
-    
-    
+
+
     ///// ******************************************* /////
     ///// ******* End Exercise of the course. ******* /////
     ///// ******************************************* /////
+
+
+    /////Member data, is the idea of have a method to have the different InlineData
+    public static IEnumerable<object[]> AddTestData
+        => new List<object[]>
+        {
+        new object[]{ 5, 5, 10 },
+        new object[]{ -5, 5, 0 },
+        new object[]{ -15, (-5), -20 },
+        };
+
 }
 
 //Note: for every single tests xUnit creates a new instance of the private readonly parameter
@@ -118,3 +132,6 @@ public class CalculatorTests : IDisposable
 //to implement Setup and Teardown, ctor run first than InitializeAsync, it is important to remember.
 
 //We can use fluent assertions to have more elegant tests
+
+
+
