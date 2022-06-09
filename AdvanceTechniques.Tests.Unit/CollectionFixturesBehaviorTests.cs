@@ -1,6 +1,18 @@
 ﻿namespace AdvanceTechniques.Tests.Unit;
 
-
+/// <summary>
+/// To shared the same objet to different clases its necesary to use the 
+/// attribute Collection indicating the name of the CollectionDefinition
+/// that implement the Fixture. 
+/// 
+/// IMPORTANT NOTE: When we shared a fixture to different classes these 
+/// tests will be run not in parallel, because are sharing the same 
+/// fixture. 
+/// 
+/// To run in parallel we need to change to the implmentation of : IClassFixture<T>
+/// 
+/// However, we can further customize
+/// </summary>
 [Collection("MyCollectionFixture")]
 public class CollectionFixturesBehaviorTests
 {
