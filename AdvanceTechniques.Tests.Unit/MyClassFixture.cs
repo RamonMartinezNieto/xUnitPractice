@@ -1,10 +1,10 @@
 ﻿namespace AdvanceTechniques.Tests.Unit;
 
-public class MyClassFixture : IDisposable
+public class MyClassFixture  : IDisposable
 {
     public Guid Id { get; } = Guid.NewGuid();
 
-    public MyClassFixture(Guid id)
+    public MyClassFixture()
     {
         //This will runs once before any test in the class that implement it
         //remember that the constructor in the class tests is running before each test
