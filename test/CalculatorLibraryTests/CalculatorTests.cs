@@ -81,11 +81,12 @@ public class CalculatorTests : IDisposable
         => Assert.Equal(expected, _sut.Add(numberOne, numberTwo));
     
     [Theory]
-    [InlineData(5, 5, 0)]
-    [InlineData(15, 5, 10)]
-    [InlineData(-5, (-5), 0)]
-    [InlineData(-15, (-5), -10)]
-    [InlineData(5, 10, -5)]
+    //[InlineData(5, 5, 0)]
+    //[InlineData(15, 5, 10)]
+    //[InlineData(-5, (-5), 0)]
+    //[InlineData(-15, (-5), -10)]
+    //[InlineData(5, 10, -5)]
+    [ClassData(typeof(CalculatorSubtractTestData))]
     public void SubtractExercise_ShoulSubtractTwoNumbers_WhenNUmbersAreIntegers(
         int numberOne, int numberTwo, int expected)
         => Assert.Equal(expected, _sut.Subtract(numberOne, numberTwo));  
@@ -134,4 +135,17 @@ public class CalculatorTests : IDisposable
 //We can use fluent assertions to have more elegant tests
 
 
+public class CalculatorSubtractTestData : IEnumerable<object[]>
+{
+    public IEnumerator<object[]> GetEnumerator()
+    {
+        //here can be any dinamic code to test 
+        yield return new object[] { 5, 5, 0 };
+        yield return new object[] { 15, 5, 10 };
+        yield return new object[] { -5, (-5), 0 };
+        yield return new object[] { -15, (-5), -10 };
+        yield return new object[] { 5, 10, -5 };
+    }
 
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+}
